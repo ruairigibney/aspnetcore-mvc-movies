@@ -52,7 +52,6 @@ namespace Sample.MovieCatalogue
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             using(var scope = app.ApplicationServices.CreateScope())
