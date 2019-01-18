@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sample.MovieCatalogue.Data;
+using Sample.MovieCatalogue.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace aspnetcore_mvc_movies
+namespace Sample.MovieCatalogue
 {
     public class Startup
     {
@@ -31,7 +34,7 @@ namespace aspnetcore_mvc_movies
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddDbContext<MovieCatalogueDbContext>(options => options.UseInMemoryDatabase("MovieCatalogue"), ServiceLifetime.Scoped);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -52,12 +55,17 @@ namespace aspnetcore_mvc_movies
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            using(var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MovieCatalogueDbContext>())
+            {
+                context.Database.EnsureCreated();
+            }
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Movies}/{action=Index}/{id?}");
             });
         }
     }
