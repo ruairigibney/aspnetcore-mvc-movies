@@ -4,6 +4,9 @@
 * Install [Visual Studio Code](https://code.visualstudio.com/Download)
 
 ## Copy the template project to your own repo
+Fork the repo if you have your own GitHub account!
+
+Or:
 * Clone [this repo](https://github.com/scottmcelveen/aspnetcore-mvc-movies.git)
 * `git remote set-url origin <YOUR-REPO-URL>`
 * `git push origin master`
