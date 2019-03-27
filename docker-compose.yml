@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  aspnetcore-mvc-movies:
+    image: ${DOCKER_REGISTRY-}aspnetcoremvcmovies
+    build:
+      context: .
+      dockerfile: Dockerfile
