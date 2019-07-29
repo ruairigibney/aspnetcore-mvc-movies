@@ -1,0 +1,39 @@
+@model Sample.MovieCatalogue.Data.Models.Movie
+
+<!DOCTYPE html>
+
+<body>
+    <div>
+        <h4>Add Movie</h4>
+        <hr />
+        <dl class="row">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, Model))
+    {
+            <fieldset>
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        <dl class ="column">
+                            <dt class="col-sm-8">@Html.TextBoxFor(model => model.Title)</dt>
+                            <dt class="col-sm-5">@Html.ValidationMessage("Title", "", new { @class = "validation-errors" })</dt>
+                        </dl>
+                    </dd><br>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.ReleaseYear)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        <dl class ="column">
+                            <dt class="col-sm-8">@Html.TextBoxFor(model => model.ReleaseYear,  "{0:#.#}")</dt>
+                            <dt class="col-sm-5">@Html.ValidationMessage("ReleaseYear", "", new { @class = "validation-errors" })</dt>
+                        </dl>
+                    </dd>
+                </dl>
+                <p>
+                    <input type="submit" value="Save"/>
+                </p>
+            </fieldset>
+    }
+    </div>
+</body>

@@ -71,5 +71,29 @@ namespace Sample.MovieCatalogue.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+         // GET: AddMovie
+        [HttpGet]
+        public ActionResult AddMovie()
+        {
+            var movie = new Movie();
+            return View(movie);
+        }
+
+        // POST: AddMovie
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMovie(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(movie);
+            }
+
+            _context.Movies.Add(movie);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
