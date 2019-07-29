@@ -6,7 +6,7 @@ EXPOSE 443
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY aspnetcore-mvc-movies.csproj ./
-RUN dotnet restore /aspnetcore-mvc-movies.csproj
+RUN dotnet restore aspnetcore-mvc-movies.csproj
 COPY . .
 WORKDIR /src/
 RUN dotnet build aspnetcore-mvc-movies.csproj -c Release -o /app
