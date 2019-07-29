@@ -14,5 +14,9 @@ Or:
 ## Run the app
 * `cd <checkout dir>`
 * `dotnet build`
-* `dotnet run`
+* `dotnet run -p aspnetcore-mvc-movies_default.csproj`
+* visit `http://localhost:5000`
+
+## Run the app with Docker - if you already have it working!
+* `docker-compose up`
 * visit `http://localhost:5000`
